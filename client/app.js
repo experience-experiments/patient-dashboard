@@ -1,5 +1,6 @@
 import {Observable} from 'rxjs';
 import {diff, patch, create} from 'virtual-dom';
+import './styles.scss';
 import patientList from './patient-list/patient-list';
 
 const data = [
@@ -19,7 +20,7 @@ function render(patients) {
   return patientList(patients);
 }
 
-const mountElement = document.getElementById('content');
+const mountElement = document.getElementById('dashboard');
 mountElement.innerHTML = '';
 let vDom = render([]);
 let domTree = create(vDom);

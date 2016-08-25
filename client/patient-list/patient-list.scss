@@ -1,13 +1,21 @@
-ul.patient-list {
-  list-style-type: none;
+.patient-list {
   padding: 20px;
 }
 
-li.patient-item {
-  border: 1px solid #7f7f7f;
-  border-top: none;
-  padding: 10px;
-  &:first-child {
-    border-top: 1px solid #7f7f7f;
+.vital {
+  .hr {
+    font-size: 38px;
+  }
+
+  .rr {
+    font-size: 38px;
+  }
+
+  .bp {
+    font-size: 32px;
+  }
+
+  .temp {
+    font-size: 38px;
   }
 }
