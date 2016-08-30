@@ -1,8 +1,8 @@
 {
-  "name": "PatientMonitor",
+  "name": "patient-dashboard-ui",
   "version": "1.0.0",
   "private": true,
-  "description": "Patient Monitor",
+  "description": "Patient Dashboard",
   "scripts": {
     "lint": "eslint ./client/",
     "lint:fix": "eslint --fix ./client/",

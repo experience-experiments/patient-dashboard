@@ -11,13 +11,14 @@ Once you are ready to get into the code, check your environment to make sure you
   - Git (possibly with sourcetree)
   - Bitbucket account with access to this repository
   - NodeJS 6.x with NPM 3.x
+  - Cloud Foundry CLI
 
 ## Toolkit
 
 ### A. Build & Deploy
 
 - [Webpack](https://webpack.github.io/) for live development and build optimisation
-
+- [Pivotal Cloud Foundry - PCF Dev](https://docs.pivotal.io/pcf-dev/index.html) for targeting cloud deployment.
 
 ## Development Process
 
@@ -28,4 +29,17 @@ Following commands are available in package.json to help you with your developme
   * `npm test` - to run unit tests locally
   * `npm test watch` - to run unit tests in watch mode
   * `npm run build` - to build the app
- 
+
+## Deployment
+
+Currently the project contains a cloudfoundry manifest in order to be deployed to a cloudfoundry environment. Below is an example of deploying the app using [pcf-dev](https://docs.pivotal.io/pcf-dev/index.html).
+
+To start the pivotal cloud foundry VM: `cf dev start`
+
+To login using `cf` command line api.
+```
+  $ cf login -a https://api.local.pcfdev.io --skip-ssl-validation
+    Email: user
+    Password: pass
+```
+To upload the prebuilt application `cf push patient-dashboard-ui`. Note that this requires `npm run build` task to be completed.
