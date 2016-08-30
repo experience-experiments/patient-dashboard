@@ -8,12 +8,8 @@ const http = createHTTPServer(app);
 const port = process.env.PORT || 3000;
 const io = createSocketServer(http);
 
-/*
-
-if (process.env.NODE_ENV !== 'production') {
-  app.use(express.static('dev_client'));
-}
-*/
+// Serve index.html to document API
+app.use(express.static('entrypoint'));
 
 io.on('connection', (socket) => {
   console.log(`User connected. Socket id ${socket.id}`);
