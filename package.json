@@ -8,6 +8,7 @@
     "npm": "3.8.x"
   },
   "scripts": {
+    "start": "node server.js",
     "test": "mocha --reporter spec"
   },
   "author": "@harunhasdal",

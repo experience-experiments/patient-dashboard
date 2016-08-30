@@ -11,8 +11,57 @@ const patients = [
   {id: '142', hr: 54.50, rr: 16.20, bps: 120, bpd: 80, temp: 36.9}
 ];
 
-export const allPatientIds = () => patients.map(p => p.id);
+let subscribers = [];
 
-export default {
-  allPatientIds
+let simulationInterval;
+
+const allPatientIds = () => patients.map(p => p.id);
+
+const allPatients = () => patients;
+
+const subscribe = (patientChangeHandler) => {
+  subscribers.push(patientChangeHandler);
+  return allPatients();
+};
+
+const unsubscribe = (patientChangeHandler) => {
+  subscribers = subscribers.filter(fn => fn !== patientChangeHandler);
+  return null;
+};
+
+const simulateUpdates = () => {
+  // Pick a random patient
+  const patientIndex = Math.floor(Math.random() * patients.length);
+  const patient = patients[patientIndex];
+
+  const vitals = ['hr', 'rr', 'bps', 'bpd', 'temp'];
+  vitals.forEach(vital => {
+    // Randomly update patient vitals
+    const ACTIONS = ['increase', 'decrease', 'keep'];
+    const simulationAction = ACTIONS[Math.floor(Math.random() * ACTIONS.length)];
+    if (simulationAction === ACTIONS[0]) {
+      patient[vital] += Math.ceil(Math.random() * 10) / 10;
+    } else if (simulationAction === ACTIONS[1]) {
+      patient[vital] -= Math.ceil(Math.random() * 10) / 10;
+    }
+  });
+
+  subscribers.forEach(fn => fn(patient));
+};
+
+const startSimulation = (intervalMs = 200) => {
+  simulationInterval = setInterval(simulateUpdates, intervalMs);
+};
+
+const stopSimulation = () => {
+  clearInterval(simulationInterval);
+};
+
+module.exports = {
+  allPatientIds,
+  allPatients,
+  subscribe,
+  unsubscribe,
+  startSimulation,
+  stopSimulation
 };

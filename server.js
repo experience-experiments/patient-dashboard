@@ -1,18 +1,31 @@
-import express from 'express';
-import {Server as createServer} from 'http';
-import createSocketServer from 'socket.io';
-import {allPatientIds} from './patient-data-feed';
+const express = require('express');
+const createHTTPServer = require('http').Server;
+const createSocketServer = require('socket.io');
+const patientDataFeed = require('./patient-data-feed');
 
 const app = express();
-const http = createServer(app);
+const http = createHTTPServer(app);
 const port = process.env.PORT || 3000;
 const io = createSocketServer(http);
 
+/*
+
+if (process.env.NODE_ENV !== 'production') {
+  app.use(express.static('dev_client'));
+}
+*/
+
 io.on('connection', (socket) => {
   console.log(`User connected. Socket id ${socket.id}`);
-  socket.emit('watched-patients', allPatientIds());
+
+  const onPatientUpdate = (patientUpdate) => socket.emit('patient-update', patientUpdate);
+  const initialPatientList = patientDataFeed.subscribe(onPatientUpdate);
+
+  socket.emit('watched-patients', initialPatientList);
 
   socket.on('disconnect', () => console.log('User disconnected, Socket id ${socket.id}'));
 });
+
+patientDataFeed.startSimulation();
 
 http.listen(port, () => console.log(`Patient Dashboard Server listening on port ${port}`));
