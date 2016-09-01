@@ -10,10 +10,11 @@ const renderPatient = (patient) => {
     ]),
     h('div.card-content', [
       h('div.content', [
-        h('div.vital', ['Heart Rate', h('br'), h('div.hr', [hr])]),
-        h('div.vital', ['Respiratory Rate', h('br'), h('div.rr', [rr])]),
-        h('div.vital', ['Blood Pressure', h('br'), h('div.bp', [bps, ' / ', bpd])]),
-        h('div.vital', ['Temprature', h('br'), h('div.temp', [temp])])
+        h('div.vital', ['Heart Rate', h('br'), h('div.hr', [hr.toFixed(2)])]),
+        h('div.vital', ['Respiratory Rate', h('br'), h('div.rr', [rr.toFixed(2)])]),
+        h('div.vital', ['Blood Pressure', h('br'), h('div.bp',
+          [bps.toFixed(2), ' / ', bpd.toFixed(2)])]),
+        h('div.vital', ['Temprature', h('br'), h('div.temp', [temp.toFixed(2)])])
       ])
     ]),
     h('footer.card-footer', [

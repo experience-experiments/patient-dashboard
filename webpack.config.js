@@ -43,10 +43,13 @@ module.exports = {
 
   resolve: {
     extensions: ['', '.js'],
-    alias: {}
+    alias: {
+      'socket.io-client': path.join(__dirname, 'node_modules', 'socket.io-client', 'socket.io.js')
+    }
   },
 
   module: {
+    noParse: [/socket.io-client/],
     preLoaders: [{
       test: /\.js$/,
       include: PATHS.src,
