@@ -17,7 +17,7 @@ io.on('connection', (socket) => {
   const onPatientUpdate = (patientUpdate) => socket.emit('patient-update', patientUpdate);
   const initialPatientList = patientDataFeed.subscribe(onPatientUpdate);
 
-  socket.emit('watched-patients', initialPatientList);
+  socket.emit('patient-update', initialPatientList);
 
   socket.on('disconnect', () => console.log('User disconnected, Socket id ${socket.id}'));
 });

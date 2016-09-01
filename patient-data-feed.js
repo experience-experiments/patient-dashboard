@@ -46,7 +46,7 @@ const simulateUpdates = () => {
     }
   });
 
-  subscribers.forEach(fn => fn(patient));
+  subscribers.forEach(fn => fn(patients));
 };
 
 const startSimulation = (intervalMs = 200) => {
