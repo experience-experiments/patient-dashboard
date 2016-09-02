@@ -83,7 +83,13 @@ module.exports = {
   devServer: {
     contentBase: path.resolve(__dirname, 'client'),
     port: 8001,
-    historyApiFallback: true
+    historyApiFallback: true,
+    proxy: {
+      '/socket.io': {
+        target: 'http://localhost:3000',
+        secure: false
+      }
+    }
   }
 
 };

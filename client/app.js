@@ -9,7 +9,7 @@ function render(patients) {
   return patientList(patients);
 }
 
-const socket = io('http://localhost:3000');
+const socket = io();
 
 const mountElement = document.getElementById('dashboard');
 mountElement.innerHTML = '';
