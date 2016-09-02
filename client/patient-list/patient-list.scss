@@ -18,4 +18,13 @@
   .temp {
     font-size: 38px;
   }
+
+  .changed {
+    animation: color_change 500ms 1 normal;
+  }
+}
+
+@keyframes color_change {
+	from { background-color: yellow; }
+	to { background-color: white; }
 }

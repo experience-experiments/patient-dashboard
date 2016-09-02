@@ -2,7 +2,10 @@ import {h} from 'virtual-dom';
 import './patient-list.scss';
 
 const renderPatient = (patient) => {
-  const {id, hr, rr, bps, bpd, temp} = patient;
+  const {id, hr, rr, bps, bpd, temp, changes} = patient;
+  const getVitalClass = (vitalName) =>
+    ((changes && changes.indexOf(vitalName) > -1) ? '.changed' : '');
+
   return h('div.column.is-one-quarter', h('div.card.patient-card', [
     h('header.card-header', [
       h('p.card-header-title', `Patient ${id}`),
@@ -10,11 +13,30 @@ const renderPatient = (patient) => {
     ]),
     h('div.card-content', [
       h('div.content', [
-        h('div.vital', ['Heart Rate', h('br'), h('div.hr', [hr.toFixed(2)])]),
-        h('div.vital', ['Respiratory Rate', h('br'), h('div.rr', [rr.toFixed(2)])]),
-        h('div.vital', ['Blood Pressure', h('br'), h('div.bp',
-          [bps.toFixed(2), ' / ', bpd.toFixed(2)])]),
-        h('div.vital', ['Temprature', h('br'), h('div.temp', [temp.toFixed(2)])])
+        h('div.vital', [
+          'Heart Rate',
+          h('br'),
+          h(`div.hr${getVitalClass('hr')}`,
+          [hr.toFixed(2)])
+        ]),
+        h('div.vital', [
+          'Respiratory Rate',
+          h('br'),
+          h(`div.rr${getVitalClass('rr')}`,
+          [rr.toFixed(2)])
+        ]),
+        h('div.vital', [
+          'Blood Pressure',
+          h('br'),
+          h(`div.bp${getVitalClass('bps')}${getVitalClass('bpd')}`,
+          [bps.toFixed(2), ' / ', bpd.toFixed(2)])
+        ]),
+        h('div.vital', [
+          'Temprature',
+          h('br'),
+          h(`div.temp${getVitalClass('temp')}`,
+          [temp.toFixed(2)])
+        ])
       ])
     ]),
     h('footer.card-footer', [
