@@ -1,4 +1,4 @@
-const patients = [
+let patients = [
   {id: '123', hr: 65.87, rr: 16.20, bps: 120, bpd: 80, temp: 36.9},
   {id: '124', hr: 65.87, rr: 16.20, bps: 120, bpd: 80, temp: 36.9},
   {id: '125', hr: 65.87, rr: 16.20, bps: 120, bpd: 80, temp: 36.9},
@@ -6,9 +6,7 @@ const patients = [
   {id: '137', hr: 83.24, rr: 16.20, bps: 120, bpd: 80, temp: 36.9},
   {id: '138', hr: 55.76, rr: 16.20, bps: 120, bpd: 80, temp: 36.9},
   {id: '139', hr: 76.12, rr: 16.20, bps: 120, bpd: 80, temp: 36.9},
-  {id: '140', hr: 61.75, rr: 16.20, bps: 120, bpd: 80, temp: 36.9},
-  {id: '141', hr: 65.84, rr: 16.20, bps: 120, bpd: 80, temp: 36.9},
-  {id: '142', hr: 54.50, rr: 16.20, bps: 120, bpd: 80, temp: 36.9}
+  {id: '140', hr: 61.75, rr: 16.20, bps: 120, bpd: 80, temp: 36.9}
 ];
 
 let subscribers = [];
@@ -30,26 +28,28 @@ const unsubscribe = (patientChangeHandler) => {
 };
 
 const simulateUpdates = () => {
-  // Pick a random patient
-  const patientIndex = Math.floor(Math.random() * patients.length);
-  const patient = patients[patientIndex];
-
-  const vitals = ['hr', 'rr', 'bps', 'bpd', 'temp'];
-  vitals.forEach(vital => {
-    // Randomly update patient vitals
-    const ACTIONS = ['increase', 'decrease', 'keep'];
-    const simulationAction = ACTIONS[Math.floor(Math.random() * ACTIONS.length)];
-    if (simulationAction === ACTIONS[0]) {
-      patient[vital] += Math.ceil(Math.random() * 10) / 10;
-    } else if (simulationAction === ACTIONS[1]) {
-      patient[vital] -= Math.ceil(Math.random() * 10) / 10;
-    }
+  patients = patients.map(p => {
+    const updates = {changes: []};
+    const vitals = ['hr', 'rr', 'bps', 'bpd', 'temp'];
+    vitals.forEach(vital => {
+      // Randomly update patient vitals
+      const ACTIONS = ['increase', 'decrease', 'keep'];
+      const simulationAction = ACTIONS[Math.floor(Math.random() * ACTIONS.length)];
+      if (simulationAction === ACTIONS[0]) {
+        updates[vital] = p[vital] + (Math.ceil(Math.random() * 100) / 100);
+        updates.changes.push(vital);
+      } else if (simulationAction === ACTIONS[1]) {
+        updates[vital] = p[vital] - (Math.ceil(Math.random() * 100) / 100);
+        updates.changes.push(vital);
+      }
+    });
+    return Object.assign({}, p, updates);
   });
 
   subscribers.forEach(fn => fn(patients));
 };
 
-const startSimulation = (intervalMs = 200) => {
+const startSimulation = (intervalMs = 500) => {
   simulationInterval = setInterval(simulateUpdates, intervalMs);
 };
 
