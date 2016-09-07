@@ -1,7 +1,3 @@
-.patient-list {
-  padding: 20px;
-}
-
 .vital {
   .hr {
     font-size: 38px;
@@ -25,6 +21,6 @@
 }
 
 @keyframes color_change {
-	from { background-color: yellow; }
-	to { background-color: white; }
+  from { background-color: yellow; }
+  to { background-color: white; }
 }

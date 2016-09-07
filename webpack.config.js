@@ -23,7 +23,7 @@ module.exports = {
   env: process.env.NODE_ENV,
   entry: {
     app: path.resolve(PATHS.src, 'app.js'),
-    vendor: ['rxjs']
+    vendor: ['rxjs', 'react', 'react-dom']
   },
 
   output: {
