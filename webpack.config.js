@@ -22,7 +22,7 @@ function OpenPlugin() {
 module.exports = {
   env: process.env.NODE_ENV,
   entry: {
-    app: path.resolve(PATHS.src, 'app.js'),
+    app: path.resolve(PATHS.src, 'app.jsx'),
     vendor: ['rxjs', 'react', 'react-dom']
   },
 
@@ -42,7 +42,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['', '.js'],
+    extensions: ['', '.js', '.jsx'],
     alias: {
       'socket.io-client': path.join(__dirname, 'node_modules', 'socket.io-client', 'socket.io.js')
     }
@@ -51,12 +51,12 @@ module.exports = {
   module: {
     noParse: [/socket.io-client/],
     preLoaders: [{
-      test: /\.js$/,
+      test: /\.(js|jsx)$/,
       include: PATHS.src,
       loader: 'eslint'
     }],
     loaders: [{
-      test: /\.js$/,
+      test: /\.(js|jsx)$/,
       include: PATHS.src,
       loader: 'babel'
     }, {

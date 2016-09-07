@@ -11,8 +11,8 @@ const PATHS = {
 module.exports = {
   env: process.env.NODE_ENV,
   entry: {
-    app: path.resolve(PATHS.src, 'app.js'),
-    vendor: ['rxjs', 'virtual-dom']
+    app: path.resolve(PATHS.src, 'app.jsx'),
+    vendor: ['rxjs', 'react', 'react-dom']
   },
 
   output: {
@@ -30,13 +30,13 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['', '.js'],
+    extensions: ['', '.js', '.jsx'],
     alias: {}
   },
 
   module: {
     loaders: [{
-      test: /\.js$/,
+      test: /\.(js|jsx)$/,
       include: PATHS.src,
       loader: 'babel'
     }, {
