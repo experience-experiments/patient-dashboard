@@ -9,7 +9,9 @@
     "serve": "webpack-dev-server --config ./webpack.config.js --inline --hot",
     "build": "npm run build:clean && npm run build:webpack",
     "build:clean": "rimraf ./dist",
-    "build:webpack": "NODE_ENV=production webpack --config ./webpack.dist.config.js --color -p"
+    "build:webpack": "NODE_ENV=production webpack --config ./webpack.dist.config.js --color -p",
+    "deploy:cf": "cf push",
+    "deploy": "npm run build && npm run deploy:cf"
   },
   "engines": {
     "node": ">= 6.2"

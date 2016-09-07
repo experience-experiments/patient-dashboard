@@ -12,7 +12,7 @@ module.exports = {
   env: process.env.NODE_ENV,
   entry: {
     app: path.resolve(PATHS.src, 'app.js'),
-    vendor: ['rxjs']
+    vendor: ['rxjs', 'virtual-dom']
   },
 
   output: {
@@ -63,6 +63,7 @@ module.exports = {
     new webpack.NoErrorsPlugin(),
     new CopyWebpackPlugin([
       {from: 'client/index.html', to: '..'},
+      {from: 'nginx.conf', to: '..'},
       {context: 'client/assets', from: '**/*', to: '../assets'}
     ])
   ]
