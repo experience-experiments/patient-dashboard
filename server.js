@@ -19,7 +19,7 @@ io.on('connection', (socket) => {
 
   socket.emit('patient-update', initialPatientList);
 
-  socket.on('disconnect', () => console.log('User disconnected, Socket id ${socket.id}'));
+  socket.on('disconnect', () => console.log(`User disconnected, Socket id ${socket.id}`));
 });
 
 patientDataFeed.startSimulation();
