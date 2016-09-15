@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Patient Dashboard Server - Dev Page</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      let logArea;
+      function log(message) {
+        if (!logArea) {
+          logArea = document.getElementById('log');
+        }
+        const timestamp = new Date();
+        const logDate = `${timestamp.getHours()}:${timestamp.getMinutes()}:${timestamp.getSeconds()}`;
+        logArea.value += `${logDate}\n${message}\n\n`;
+          logArea.scrollTop = logArea.scrollHeight;
+      }
+    </script>
+</head>
+<body>
+
+<div id="main">
+    <section>
+        <h2>Subscribing the patient data updates</h2>
+        <p>Use the following URL to load socket.io.js into your application</p>
+        <pre id="socketio-href"></pre>
+        <p>Use the following snippet to connect to socket.io</p>
+        <pre id="socketio-connect"></pre>
+    </section>
+    <section>
+
+    </section>
+    <section>
+        <h2>Live Updates</h2>
+        <textarea id="log" style="margin: auto; width: 90%; height: 50vh;"></textarea>
+    </section>
+
+</div>
+
+<script>
+    const socket = io();
+    let allPatients = [];
+
+    socket.on('watched-patients', function(patients) {
+        allPatients = patients;
+        const ids = patients.map(function(p) {return p.id;});
+        log(`Watched patient IDs: ${ids}`);
+    });
+
+    socket.on('patient-update', function(patientUpdate) {
+        const updateStr = JSON.stringify(patientUpdate);
+        log(`Vitals updated: \n${updateStr}`);
+    });
+</script>
+
+<script>
+    var serverPath = window.location.protocol + '//' + window.location.host;
+    document.getElementById('socketio-href').innerHTML = serverPath + '/socket.io/socket.io.js';
+    document.getElementById('socketio-connect').innerHTML = `var socket = io.connect('${serverPath}');`;
+</script>
+</body>
+</html>
