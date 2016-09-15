@@ -1,0 +1,26 @@
+.vital {
+  .hr {
+    font-size: 38px;
+  }
+
+  .rr {
+    font-size: 38px;
+  }
+
+  .bp {
+    font-size: 32px;
+  }
+
+  .temp {
+    font-size: 38px;
+  }
+
+  .changed {
+    animation: color_change 500ms 1 normal;
+  }
+}
+
+@keyframes color_change {
+  from { background-color: yellow; }
+  to { background-color: white; }
+}
