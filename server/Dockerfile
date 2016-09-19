@@ -1,9 +1,11 @@
-FROM node:6.5
+FROM node:6.5-slim
 
-RUN mkdir -p /usr/src/app
+ADD package.json /tmp/package.json
+RUN cd /tmp && npm install
+RUN mkdir -p /usr/src/app && cp -a /tmp/node_modules /usr/src/app
+
 WORKDIR /usr/src/app
-
-RUN npm install
+ADD . /usr/src/app
 
 EXPOSE 3000
 
