@@ -10,7 +10,22 @@ Each project folder contains source code and build scripts to enable individual 
 
 Each project folder will have their own descriptors e.g. `package.json`, `pom.xml` etc.
 
-## Installing the dependencies
+
+## Building and Running the application
+
+This application provides configuration files to run in docker containers. You will need docker engine and docker-compose installed to run the application locally.
+
+Once your environment is ready. Use the following command to launch the application.
+
+```
+docker-compose up -d
+```
+
+Note that with the current configuration this will build and start two docker containers and link them together.
+
+## Development
+
+### Installing the dependencies
 
 Go into each individual process and install dependencies if at any point you'd like to run them locally in your host machine.
 
@@ -21,4 +36,12 @@ cd server && npm install && cd ..
 cd web-ui && npm install && cd .. 
 ```
 
+### Running webpack dev server against local containers
 
+```
+cd web-ui
+npm run dev
+```
+
+This will start the webpack-dev-server for the web app. 
+Make sure you have the correct proxy config in your webpack.config.js to proxy api calls to express server.
