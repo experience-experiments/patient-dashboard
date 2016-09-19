@@ -63,7 +63,7 @@ module.exports = {
     new webpack.NoErrorsPlugin(),
     new CopyWebpackPlugin([
       {from: 'client/index.html', to: '..'},
-      {from: 'nginx.conf', to: '..'},
+      {from: 'nginx.conf.prod', to: '..'},
       {context: 'client/assets', from: '**/*', to: '../assets'}
     ])
   ]

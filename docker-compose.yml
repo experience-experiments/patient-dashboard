@@ -4,5 +4,8 @@ services:
     build: ./server/
     ports:
       - 3000:3000
-    volumes:
-      - ./server:/usr/src/app
+  web-ui:
+    build: ./web-ui/
+    ports:
+      - 80:80
+
