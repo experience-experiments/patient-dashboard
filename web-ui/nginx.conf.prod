@@ -24,10 +24,10 @@ http {
 
   server {
     listen 80;
-    server_name 127.0.0.1 localhost 0.0.0.0;
+    server_name *.local 127.0.0.1 localhost 0.0.0.0;
 
     location ~* \.io {
-      proxy_pass http://localhost:3000;
+      proxy_pass http://api-server:3000;
       proxy_redirect off;
       proxy_http_version 1.1;
       proxy_set_header Upgrade $http_upgrade;

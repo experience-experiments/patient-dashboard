@@ -6,6 +6,8 @@ services:
       - 3000:3000
   web-ui:
     build: ./web-ui/
+    links:
+      - server:api-server
     ports:
       - 80:80
 
