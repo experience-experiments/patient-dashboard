@@ -38,10 +38,14 @@ cd web-ui && npm install && cd ..
 
 ### Running webpack dev server against local containers
 
+Currently the web-ui project is to set up to use webpack-dev-server instead of nginx for local development purposes. 
+Following command will start the webpack-dev-server for the web app. 
+
 ```
 cd web-ui
-npm run dev
+npm run serve
 ```
 
-This will start the webpack-dev-server for the web app. 
 Make sure you have the correct proxy config in your webpack.config.js to proxy api calls to express server.
+Please refer to the readme files for the individual project to learn more about the detailed development workflows.
+
