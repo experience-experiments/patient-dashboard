@@ -30,9 +30,9 @@ Following commands are available in package.json to help you with your developme
   * `npm test watch` - to run unit tests in watch mode
   * `npm run build` - to build the app
 
-## Deployment
+## Local PCF Deployment
 
-Currently the project contains a cloudfoundry manifest in order to be deployed to a cloudfoundry environment. Below is an example of deploying the app using [pcf-dev](https://docs.pivotal.io/pcf-dev/index.html).
+Currently the project contains a cloudfoundry manifest (`manifest.yml`) in order to be deployed to a cloudfoundry environment. Below is an example of deploying the app using [pcf-dev](https://docs.pivotal.io/pcf-dev/index.html).
 
 To start the pivotal cloud foundry VM: `cf dev start`
 
@@ -43,3 +43,7 @@ To login using `cf` command line api.
     Password: pass
 ```
 To upload the prebuilt application `cf push patient-dashboard-ui`. Note that this requires `npm run build` task to be completed.
+
+## AWS Deployment
+
+Check the root repository readme for AWS deployment.

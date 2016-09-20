@@ -10,6 +10,18 @@ Each project folder contains source code and build scripts to enable individual 
 
 Each project folder will have their own descriptors e.g. `package.json`, `pom.xml` etc.
 
+## Toolkit
+
+Service management using containers and AWS ECS deployments
+
+- [Docker Engine](https://docs.docker.com/engine/installation/)
+- [Docker Compose](https://docs.docker.com/compose/install/)
+- [AWS ECS CLI](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_CLI.html)
+
+Service management using Cloud Foundry and PCF deployments
+
+- [Cloud Foundry CLI](https://docs.cloudfoundry.org/cf-cli/)
+- [PCF Dev](https://docs.pivotal.io/pcf-dev/)
 
 ## Building and Running the application
 
@@ -22,6 +34,10 @@ docker-compose up -d
 ```
 
 Note that with the current configuration this will build and start two docker containers and link them together.
+
+Check the `docker-compose.yml` file to understand the service configuration for the app.
+
+Check the `Dockerfile`s in the project folders to understand the environment setup for each service.
 
 ## Development
 
