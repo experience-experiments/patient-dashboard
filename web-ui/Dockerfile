@@ -15,7 +15,7 @@ WORKDIR $APP_HOME
 ADD . $APP_HOME
 
 RUN npm install --quiet
-
+RUN npm rebuild node-sass
 RUN npm run build
 
 EXPOSE 80
